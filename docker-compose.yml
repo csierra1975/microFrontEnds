@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  shell:
+    build:
+      context: .
+      dockerfile: shell/Dockerfile
+    ports:
+      - "4200:4200"
+    networks:
+      - mfe-network
+
+  mfe1:
+    build:
+      context: .
+      dockerfile: mfe1/Dockerfile
+    ports:
+      - "4201:4201"
+    networks:
+      - mfe-network
+
+  mfe2:
+    build:
+      context: .
+      dockerfile: mfe2/Dockerfile
+    ports:
+      - "4202:4202"
+    networks:
+      - mfe-network
+
+networks:
+  mfe-network:
+    driver: bridge
