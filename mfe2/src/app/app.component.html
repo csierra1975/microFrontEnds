@@ -1,0 +1,10 @@
+<div class="info-container">
+    <h2>Información Estática</h2>
+    <ul class="info-list">
+      <li *ngFor="let item of items" class="info-item">
+        <p>{{ item }}</p>
+      </li>
+    </ul>
+    <button (click)="sendMessage()">Enviar mensaje a MFE2</button>
+  </div>
+  
