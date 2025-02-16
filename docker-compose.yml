@@ -1,30 +1,36 @@
-version: '3.7'
+version: '3.8'
 
 services:
   shell:
     build:
       context: .
-      dockerfile: shell/Dockerfile
+      dockerfile: Dockerfile.shell
+    image: shell:latest
     ports:
-      - "4200:4200"
+      - "8080:80"    # Mapea el puerto 80 del contenedor (Nginx) al puerto 8080 en el host
+    depends_on:
+      - mfe1
+      - mfe2      
     networks:
       - mfe-network
 
   mfe1:
     build:
       context: .
-      dockerfile: mfe1/Dockerfile
+      dockerfile: Dockerfile.mfe1
+    image: mfe1:latest
     ports:
-      - "4201:4201"
+      - "4201:80"    # Mapea el puerto 80 del contenedor al puerto 4201 en el host
     networks:
       - mfe-network
 
   mfe2:
     build:
       context: .
-      dockerfile: mfe2/Dockerfile
+      dockerfile: Dockerfile.mfe2
+    image: mfe2:latest
     ports:
-      - "4202:4202"
+      - "4202:80"    # Mapea el puerto 80 del contenedor al puerto 4202 en el host
     networks:
       - mfe-network
 

@@ -1,7 +1,7 @@
 import { Component, OnDestroy,  } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';  // Importar CommonModule
-import { CommunicationService } from '../../../shell/communicationService';
+import { CommunicationService } from '../../../shared-services/src/lib/shared-services/communicationService';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({

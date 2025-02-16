@@ -1,0 +1,22 @@
+# Dockerfile.mfe1
+
+# Etapa de construcción: usamos una imagen basada en Debian (node:18-slim)
+FROM --platform=linux/amd64 node:20-alpine AS builder
+WORKDIR /app
+
+# Copiamos los archivos de dependencias (de la raíz)
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+# Construimos la aplicación MFE1 usando Nx
+RUN npx nx build mfe1 --prod
+
+# Etapa final: usamos Nginx para servir la aplicación MFE1
+FROM nginx:alpine
+COPY --from=builder /app/dist/mfe1 /usr/share/nginx/html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

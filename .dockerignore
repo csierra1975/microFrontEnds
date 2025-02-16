@@ -1,0 +1,47 @@
+# Ignorar todo el contenido de node_modules
+node_modules/
+
+# Ignorar carpetas de construcción
+dist/
+tmp/
+coverage/
+
+# Ignorar archivos de configuración local
+.env
+.env.local
+
+# Ignorar archivos de IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignorar archivos de Git
+.git/
+.gitignore
+
+# Ignorar archivos de logs
+*.log
+logs/
+
+# Ignorar archivos de npm/yarn
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignorar archivos de Angular
+.angular/
+.cache/
+
+# Ignorar archivos de Nx
+.nx/
+.nx/cache/
+
+# Ignorar archivos de Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db

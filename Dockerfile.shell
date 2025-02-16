@@ -1,0 +1,21 @@
+# Dockerfile.shell
+
+# Etapa de construcción: usamos una imagen basada en Debian (node:18-slim)
+FROM --platform=linux/amd64 node:20-alpine AS builder
+WORKDIR /app
+
+# Copiamos los archivos de dependencias desde la raíz
+COPY package*.json ./
+RUN npm install
+
+# Copiamos el monorepo completo (usa .dockerignore para excluir archivos innecesarios)
+COPY . .
+
+# Compilamos la aplicación shell con Nx
+RUN npx nx build shell --prod
+
+# Etapa final: usamos Nginx para servir la aplicación
+FROM nginx:alpine
+COPY --from=builder /app/dist/shell /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
