@@ -10,4 +10,10 @@ nx serve shell
 nx serve mfe1
 nx serve mfe2
 
-### Recuerda que los puertos deben ser diferentes
+### Recuerda que los puertos deben ser diferente
+
+### Comando para generar la imagen
+docker build --memory=4g --memory-swap=4g -f Dockerfile.mfe1 -t mfe1:latest . 
+
+### comando para generar el contenedor
+docker run -d -p 4203:4203 mfe2
